@@ -59,7 +59,8 @@ public class NewJFrame extends javax.swing.JFrame {
         jToggleButton2 = new javax.swing.JToggleButton();
         jButton1 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -251,27 +252,19 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 1488, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1508, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -346,19 +339,76 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField6ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String var = " ";
+        String var = "";
         try {
             try {
                 // Afficher la base de donnee
                 Connexion c= new Connexion("hopital","root","");
                 String requeteSelectionnee = "select * from service;";
+                var += "\r\n service : \r\n";
                 ArrayList<String> liste;
                 liste = c.remplirChampsRequete(requeteSelectionnee);
                 for(int i = 0;i<liste.size();i++){
                     
-                    var = var + " || " + liste.get(i);
+                    var += liste.get(i);
                 }
-                jTextField1.setText(var);
+                
+                requeteSelectionnee = "select * from chambre;";
+                var += "\r\n chambre : \r\n";
+                liste = c.remplirChampsRequete(requeteSelectionnee);
+                for(int i = 0;i<liste.size();i++){
+                    
+                    var += liste.get(i);
+                }
+                
+                requeteSelectionnee = "select * from docteur;";
+                var += "\r\n docteur : \r\n";
+                liste = c.remplirChampsRequete(requeteSelectionnee);
+                for(int i = 0;i<liste.size();i++){
+                    
+                    var += liste.get(i);
+                }
+                
+                requeteSelectionnee = "select * from employe;";
+                var += "\r\n employe : \r\n";
+                liste = c.remplirChampsRequete(requeteSelectionnee);
+                for(int i = 0;i<liste.size();i++){
+                    
+                    var += liste.get(i);
+                }
+                
+                requeteSelectionnee = "select * from hospitalisation;";
+                var += "\r\n hospitalisation : \r\n";
+                liste = c.remplirChampsRequete(requeteSelectionnee);
+                for(int i = 0;i<liste.size();i++){
+                    
+                    var += liste.get(i);
+                }
+                
+                requeteSelectionnee = "select * from infirmier;";
+                var += "\r\n infirmier : \r\n";
+                liste = c.remplirChampsRequete(requeteSelectionnee);
+                for(int i = 0;i<liste.size();i++){
+                    
+                    var += liste.get(i);
+                }
+                
+                requeteSelectionnee = "select * from malade;";
+                var += "\r\n malade : \r\n";
+                liste = c.remplirChampsRequete(requeteSelectionnee);
+                for(int i = 0;i<liste.size();i++){
+                    
+                    var += liste.get(i);
+                }
+                
+                requeteSelectionnee = "select * from soigne;";
+                var += "\r\n soigne : \r\n";
+                liste = c.remplirChampsRequete(requeteSelectionnee);
+                for(int i = 0;i<liste.size();i++){
+                    
+                    var += liste.get(i);
+                }
+                jTextArea1.setText(var);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -383,7 +433,7 @@ public class NewJFrame extends javax.swing.JFrame {
                     
                     var = var + " || " + liste.get(i);
                 }
-                jTextField1.setText(var);
+                jTextArea1.setText(var);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -407,7 +457,7 @@ public class NewJFrame extends javax.swing.JFrame {
                     
                     var = var + " || " + liste.get(i);
                 }
-                jTextField1.setText(var);
+                jTextArea1.setText(var);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -417,10 +467,6 @@ public class NewJFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if(ContenuCombo2 == null || ContenuText2 == null){
             String var = " ";
@@ -428,14 +474,14 @@ public class NewJFrame extends javax.swing.JFrame {
             try {
                 // Afficher la base de donnee
                 Connexion c= new Connexion("hopital","root","");
-                String requeteSelectionnee = "select * from"+ ContenuCombo2 + "WHERE"+ ContenuText2;
+                String requeteSelectionnee = "select" + ContenuText2 + "from"+ ContenuCombo2;
                 ArrayList<String> liste;
                 liste = c.remplirChampsRequete(requeteSelectionnee);
                 for(int i = 0;i<liste.size();i++){
                     
                     var = var + " || " + liste.get(i);
                 }
-                jTextField1.setText(var);
+                jTextArea1.setText(var);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -461,7 +507,8 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
