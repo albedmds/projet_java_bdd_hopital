@@ -142,6 +142,11 @@ public class NewJFrame extends javax.swing.JFrame {
         jLabel3.setText("Que voulez-vous modifier ?");
 
         jButton2.setText("soumettre");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -371,7 +376,7 @@ public class NewJFrame extends javax.swing.JFrame {
             try {
                 // Afficher la base de donnee
                 Connexion c= new Connexion("hopital","root","");
-                String requeteSelectionnee = "select" + ContenuCombo2 + "from"+ ContenuText2 + ";";
+                String requeteSelectionnee = "select * from"+ ContenuCombo1 + "WHERE"+ ContenuText1;
                 ArrayList<String> liste;
                 liste = c.remplirChampsRequete(requeteSelectionnee);
                 for(int i = 0;i<liste.size();i++){
@@ -389,13 +394,13 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton3ActionPerformed
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
-        if(ContenuCombo2 == null || ContenuText2 == null){
+        if(ContenuCombo3 == null || ContenuText3 == null){
             String var = " ";
         try {
             try {
                 // Afficher la base de donnee
                 Connexion c= new Connexion("hopital","root","");
-                String requeteSelectionnee = "select" + ContenuText2 + "from"+ ContenuCombo2 + "WHERE 1";
+                String requeteSelectionnee = "select * from"+ ContenuCombo3 + "WHERE"+ ContenuText3;
                 ArrayList<String> liste;
                 liste = c.remplirChampsRequete(requeteSelectionnee);
                 for(int i = 0;i<liste.size();i++){
@@ -415,6 +420,30 @@ public class NewJFrame extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if(ContenuCombo2 == null || ContenuText2 == null){
+            String var = " ";
+        try {
+            try {
+                // Afficher la base de donnee
+                Connexion c= new Connexion("hopital","root","");
+                String requeteSelectionnee = "select * from"+ ContenuCombo2 + "WHERE"+ ContenuText2;
+                ArrayList<String> liste;
+                liste = c.remplirChampsRequete(requeteSelectionnee);
+                for(int i = 0;i<liste.size();i++){
+                    
+                    var = var + " || " + liste.get(i);
+                }
+                jTextField1.setText(var);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
 
@@ -450,11 +479,5 @@ public class NewJFrame extends javax.swing.JFrame {
     private ResultSet rset;
     private ResultSetMetaData rsetMeta;
     
-    /*
-    private void ConnexionBDD() throws SQLException{
-        conn = DriverManager.getConnection("http://127.0.0.1/phpmyadmin/db_structure.php?server=1&db=hopital", "root", "");
-        stmt = conn.createStatement();
-    }
-    */
 }
 
